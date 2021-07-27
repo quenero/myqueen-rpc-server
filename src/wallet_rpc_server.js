@@ -34,8 +34,8 @@ class WalletRPCServer extends ServerBase
 {
     constructor(options)
     {
-        options.port = options.port || 18082
-        options.server_name = options.server_name || "Monero Wallet RPC server"
+        options.port = options.port || 19082
+        options.server_name = options.server_name || "Queenero Wallet RPC server"
         //
         if (typeof options.document_store == 'undefined' || !options.document_store) {
             throw "WalletRPCServer requires options.document_store"

@@ -1,12 +1,12 @@
 {
-  "name": "mymonero-rpc-server",
+  "name": "myqueenero-rpc-server",
   "version": "1.0.0",
   "description": "",
   "main": "./src/main.js",
   "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mymonero/mymonero-rpc-server.git"
+    "url": "git+https://github.com/quenero/myqueenero-rpc-server.git"
   },
   "scripts": {
     "start": "node src/main.js",
@@ -16,10 +16,10 @@
   "bin": "./src/main.js",
   "pkg": {
     "scripts": [
-      "mymonero-ws-client/mymonero-core-js/monero_utils/MyMoneroCoreCpp_WASM.js"
+      "myqueenero-ws-client/myqueenero-core-js/queenero_utils/MyQueeneroCoreCpp_WASM.js"
     ],
     "assets": [
-      "mymonero-ws-client/mymonero-core-js/monero_utils/MyMoneroCoreCpp_WASM.wasm"
+      "myqueenero-ws-client/myqueenero-core-js/queenero_utils/MyQueeneroCoreCpp_WASM.wasm"
     ]
   },
   "author": "MyMonero",

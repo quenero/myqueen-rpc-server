@@ -1,6 +1,6 @@
-## mymonero-rpc-server
+## myqueenero-rpc-server
 
-Implements a subset of the Monero RPC server APIs [1,2] by way of the MyMonero WebSocket API and mymonero-core.
+Implements a subset of the Queenero RPC server APIs [1,2] by way of the MyQueenero WebSocket API and myqueenero-core.
 
 1. [Wallet RPC](https://web.getmonero.org/resources/developer-guides/wallet-rpc.html)
 2. [Daemon RPC](https://web.getmonero.org/resources/developer-guides/daemon-rpc.html)

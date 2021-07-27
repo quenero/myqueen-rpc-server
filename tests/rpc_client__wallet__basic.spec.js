@@ -31,7 +31,7 @@ const assert = require('assert')
 const axios = require('axios')
 //
 // RPC server client:
-const rpc_server_url = 'http://localhost:18082/json'
+const rpc_server_url = 'http://localhost:19082/json'
 function _send_RPC_message(rpc_req_id, method, params, fn)
 {
 	var payload = 

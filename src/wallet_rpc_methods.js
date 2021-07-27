@@ -26,8 +26,8 @@
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-const mymonero_core = require('../mymonero-ws-client/mymonero-core-js')
-const nettype = mymonero_core.nettype_utils.network_type.MAINNET // TODO: pass via server options or method function args
+const myqueenero_core = require('../myqueenero-ws-client/myqueenero-core-js')
+const nettype = myqueenero_core.nettype_utils.network_type.MAINNET // TODO: pass via server options or method function args
 function mnemonic_language_to_code(language)
 { // this can potentially be moved out
     switch (language) {
@@ -128,8 +128,8 @@ async function __givenOpenWallet_write()
     )
 }
 //
-const monero_txParsing_utils = require('../mymonero-ws-client/mymonero-core-js/monero_utils/monero_txParsing_utils')
-const monero_keyImage_cache_utils = require("../mymonero-ws-client/mymonero-core-js/monero_utils/monero_keyImage_cache_utils");
+const queenero_txParsing_utils = require('../myqueenero-ws-client/myqueenero-core-js/queenero_utils/queenero_txParsing_utils')
+const queenero_keyImage_cache_utils = require("../myqueenero-ws-client/myqueenero-core-js/queenero_utils/queenero_keyImage_cache_utils");
 //
 async function _got_tx(raw_tx)
 {
@@ -138,15 +138,15 @@ async function _got_tx(raw_tx)
         return
     }
     let address = opened_wallet_struct__address()
-    let keyImage_cache = monero_keyImage_cache_utils.Lazy_KeyImageCacheForWalletWith(address)
-    let tx_orNil = monero_txParsing_utils.ownedParsedTxFrom__orNil(
+    let keyImage_cache = queenero_keyImage_cache_utils.Lazy_KeyImageCacheForWalletWith(address)
+    let tx_orNil = queenero_txParsing_utils.ownedParsedTxFrom__orNil(
         raw_tx,
         address,
         opened_wallet_struct__view_key__sec(),
         opened_wallet_struct__spend_key__pub(),
         opened_wallet_struct__spend_key__sec(),
         keyImage_cache,
-        (await mymonero_core.monero_utils_promise)
+        (await myqueenero_core.queenero_utils_promise)
     )
     if (tx_orNil == null) {
         return // discard
@@ -287,14 +287,14 @@ async function _open_wallet(store, filename, password)
 }
 //
 //
-const ws_wireformat = require('../mymonero-ws-client/ws/ws_wireformat')
+const ws_wireformat = require('../myqueenero-ws-client/ws/ws_wireformat')
 const WSErrorCode = ws_wireformat.WSErrorCode
-const WSTransport = require("../mymonero-ws-client/ws/ws_transport.real")
-const WSClient = require('../mymonero-ws-client/ws/ws_client')
-const WSFeedPool = require('../mymonero-ws-client/ws/ws_feed_pool')
+const WSTransport = require("../myqueenero-ws-client/ws/ws_transport.real")
+const WSClient = require('../myqueenero-ws-client/ws/ws_client')
+const WSFeedPool = require('../myqueenero-ws-client/ws/ws_feed_pool')
 //
 const ws_transport = new WSTransport({
-    ws_url_base: "ws://localhost:8888" /* 8888 is real, 8889 is debug */ // 'ws://api.mymonero.com:8091' // also the default for ws_transport.real.js
+    ws_url_base: "ws://localhost:8888" /* 8888 is real, 8889 is debug */ // 'ws://api.myqueenero.xyz:8091' // also the default for ws_transport.real.js
 })
 const ws_client = new WSClient({
     ws_transport: ws_transport,
@@ -354,7 +354,7 @@ const ws_client = new WSClient({
 })
 const ws_feed_pool = new WSFeedPool({
     ws_client: ws_client,
-    REST_url_base: "https://api.mymonero.com:8443",
+    REST_url_base: "https://api.myqueenero.xyz:8443",
     fetch: require("node-fetch"),
     a_ws_did_dc__fn: function(ws_feed_id) 
     {
@@ -481,7 +481,7 @@ module.exports =
             return server._write_error(400, "Unknown language", res)
         }
         try {
-            var created = (await mymonero_core.monero_utils_promise).newly_created_wallet(lang_code, nettype);
+            var created = (await myqueenero_core.queenero_utils_promise).newly_created_wallet(lang_code, nettype);
         } catch (e) {
             server._write_error(500, e, res)
             console.log(e)
@@ -639,14 +639,14 @@ module.exports =
         //
         let unpacked
         try {
-            unpacked = (await mymonero_core.monero_utils_promise).seed_and_keys_from_mnemonic(seed, nettype)
+            unpacked = (await myqueenero_core.queenero_utils_promise).seed_and_keys_from_mnemonic(seed, nettype)
 		} catch (e) {
             console.log(e)
             return server._write_error(500, e, res)
 		}
         let derived_mnemonic
         try {
-            derived_mnemonic = (await mymonero_core.monero_utils_promise).mnemonic_from_seed(
+            derived_mnemonic = (await myqueenero_core.queenero_utils_promise).mnemonic_from_seed(
                 unpacked.sec_seed_string, 
                 unpacked.mnemonic_language
             )
